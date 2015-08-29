@@ -1,0 +1,11 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:josephdpurcell/principles-of-solitary-unit-testing.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-server-livereload": "^1.4.0"
+  }
+}
