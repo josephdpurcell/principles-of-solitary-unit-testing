@@ -1,0 +1,164 @@
+/**
+ * @file
+ * Style rules for custom Palantir.net reveal theme.
+ *
+ * @copyright Copyright (c) 2015 Palantir.net
+ */
+
+// Default mixins and settings -----------------
+@import "mixins";
+// ---------------------------------------------
+
+// Add inline font faces
+
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-Regular.otf');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-RegItalic.otf');
+   font-weight: normal;
+   font-style: italic;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-Bold.otf');
+   font-weight: 600;
+   font-weight: bold;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-BoldIt.otf');
+   font-weight: 600;
+   font-weight: bold;
+   font-style: italic;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-Light.otf');
+   font-weight: 200;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-LightItalic.otf');
+   font-weight: 200;
+   font-style: italic;
+}
+@font-face {
+   font-family: 'proxima-nova';
+      src: url('../fonts/proxima-nova/Proxima Nova-Black.otf');
+   font-weight: 900;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-Regular.otf');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-RegularIt.otf');
+   font-weight: normal;
+   font-style: italic;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-Light.otf');
+   font-weight: 200;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-LightIt.otf');
+   font-weight: 200;
+   font-style: italic;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-Semibold.otf');
+   font-weight: 600;
+   font-style: normal;
+}
+@font-face {
+   font-family: 'proxima-nova-cond';
+      src: url('../fonts/proxima-nova-cond/Proxima Nova Cond-SemiboldIt.otf');
+   font-weight: 600;
+   font-style: italic;
+}
+
+
+// Palantir Color Variables
+$orange: #fb6500;
+$teal: #11a9a1;
+$green: #9fc855;
+$lt-gray: #dbe8ec;
+$gray: #7f9aa0;
+$dk-gray: #344041;
+
+// Overide variables from settings
+// Background of the presentation
+$backgroundColor: $lt-gray;
+
+// Primary/body text
+$mainFont: 'proxima-nova', sans-serif;
+$mainFontSize: 30px;
+$mainColor: $dk-gray;
+
+// Vertical spacing between blocks of text
+$blockMargin: 0.25em;
+
+// Headings
+$headingMargin: 0 0 $blockMargin 0;
+$headingFont: 'proxima-nova', sans-serif;
+$headingLineHeight: 1;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+
+$heading1Size: 3.25em;
+$heading2Size: 2em;
+$heading3Size: 1.5em;
+$heading4Size: 1.00em;
+
+// Links and actions
+$linkColor: $teal;
+$linkColorHover: darken( $linkColor, 10% );
+
+// Text selection
+$selectionBackgroundColor: $gray;
+$selectionColor: #fff;
+
+// Generates the presentation background, can be overridden
+// to return a background image or gradient
+@mixin bodyBackground() {
+   background: $backgroundColor;
+}
+
+// =============================================================================
+// Partials to be shared with all .scss files.
+// =============================================================================
+
+// Add Compass' IE and vendor prefix support variables.
+@import "compass/support";
+// Better than Drupal's clearfix.
+@import "compass/utilities/general/clearfix";
+// See http://compass-style.org/help/tutorials/spriting/
+@import "compass/utilities/sprites";
+// Use one CSS3 mixin instead of multiple vendor prefixes.
+@import "compass/css3";
+// Helps set up a vertical rhythm.
+@import "compass/typography/vertical_rhythm";
+// Add the Breakpoint mixin.
+@import "breakpoint";
+
+// Theme template ------------------------------
+@import "theme";
+@import "code";
+@import "general";
+// ---------------------------------------------
