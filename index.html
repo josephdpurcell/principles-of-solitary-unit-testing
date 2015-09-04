@@ -46,11 +46,550 @@
         <section>
           <section class="title">
             <h1>Principles of<br>Solitary Unit Testing</h1>
+            <!-- @todo i'm doing this for style, which is bad -->
+            <h4>– DrupalCon Barcelona 2015 –</h4>
+            <h3>by Joseph D. Purcell</h3>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h1>Who am I?</h1>
+            <aside class="notes">
+              Engineer at Palantir, a full service web agency based in Chicago
+            </aside>
+          </section>
+
+          <section>
+            <h1>Who are you?</h1>
+            <aside class="notes">
+              You know unit testing and want to be better at it.
+            </aside>
+          </section>
+
+          <section>
+            <p>Solitary unit testing facilitates better software design.</p>
+            <aside class="notes">
+              <ul>
+                <li>This is the thesis.</li>
+                <li>at the very least, learning what it is facilitates better decision making about unit testing strategy</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Overview</h1>
+            <ul style="list-style-type: none">
+              <li>Part I. Definition of Solitary Unit Test</li>
+              <li>Part II. Principles of Solitary Unit Testing</li>
+              <li>Part III. Solitary Unit Test Smells</li>
+              <li>Part IV. Motivations for Solitary Unit Testing</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+<!--
+===============================================================================
+               Part I. Definition of Solitary Unit Test
+===============================================================================
+-->
+
+        <section>
+          <section>
+            <h2>Part I. Definition of Solitary Unit Test</h2>
+            <aside class="notes">
+              Problem: many definitions of what unit test is and you may not know solitary vs sociable.
+            </aside>
+          </section>
+
+          <section>
+            <h3>What is a "unit test"?</h3>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+            "unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use. Intuitively, one can view a unit as the smallest testable part of an application."
+            <p class="attribution">&mdash; <a href="https://en.wikipedia.org/wiki/Unit_testing">wikipedia.com</a></p>
+            </blockquote>
+            <aside class="notes">
+              WikiPedia is most often quoted; but really? that's the best we can do?
+            </aside>
+          </section>
+
+
+          <section>
+            <blockquote>
+            "[I]t's a situational thing - the team decides what<br>
+            makes sense to be a unit for the purposes of their<br>
+            understanding of the system and its testing."
+            <p class="attribution">&mdash; Martin Fowler, <a href="http://martinfowler.com/bliki/UnitTest.html">martinfowler.com</a></p>
+            </blockquote>
+            <aside class="notes">
+              This does get at the heart of how to approach it, but it's nothing you can build definitions on.
+            </aside>
+          </section>
+
+          <section>
+            <p>A unit test verifies a function's correctness against a specification.</p>
+            <aside class="notes">
+              <ul>
+                <li>it meets all interpretations</li>
+                <li>"verify" is true to roots: formal verification</li>
+                <li>function = constructor, method, or function</li>
+                <li>there is nothing you can unit test that could not be described by this definition</li>
+                <li>@todo is there a better word than "function"? maybe subroutine?</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>There are two problems with unit testing:</p>
+            <ol>
+              <li>indirect inputs (shared state)</li>
+              <li>indirect outputs (side effects)</li>
+            </ol>
+            <aside class="notes">
+              <ul>
+                <li>shared state: globals, env vars, db, fs, net</li>
+                <li>side effects: collaborators, db, fs, net</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>The solution: solitary unit test.</p>
+            <aside class="notes">
+              <ul>
+                <li>The "solitary" allows you to isolate and control indirect inputs and outputs.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Solitary vs Sociable</h3>
+            <p>The two aspects of a solitary unit test:</p>
+            <blockquote>
+            <ol>
+              <li>Never cross boundaries</li>
+              <li>The Class Under Test should be the only concrete class found in a test</li>
+            </ol>
+            <p class="attribution">&mdash; Jay Fields, "<a href="https://leanpub.com/wewut">Working Effectively With Unit Tests</a>"</p>
+            </blockquote>
+            <p>All other unit tests are sociable.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              A boundary is "a database, a queue,<br>
+              another system, or even an ordinary class<br>
+              if that class is 'outside' the area your trying<br>
+              to work with or are responsible for"
+              <p class="attribution">&mdash; William E. Caputo, <a href="http://www.williamcaputo.com/archives/000019.html">www.williamcaputo.com</a></p>
+            </blockquote>
+            <aside class="notes">
+              <ul>
+                <li>@todo how to add a see also to Michael C. Feathers "Working Effectively With Legacy Code" concept of "Seams"</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>A boundary is an indirect input or output.</p>
+            <aside class="notes">
+              <ul>
+                <li>i.e. shared state or side effects</li>
+                <li>@todo validate this is a good def</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Test Doubles</h3>
+            <dl>
+              <dt>Dummy</dt>
+                <dd>never called</dd>
+              <dt>Fake</dt>
+                <dd>is called</dd>
+              <dt>Stub</dt>
+                <dd>provide indirect inputs</dd>
+              <dt>Spy</dt>
+                <dd>(optionally) provide indirect inputs, capture indirect outputs</dd>
+              <dt>Mock</dt>
+                <dd>(optionally) provide indirect inputs, verify indirect outputs</dd>
+            </dl>
+            <aside class="notes">
+              <ul>
+                <li>These are the tools to deal with the boundary.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>What is a good solitary unit test?</h3>
+            <aside class="notes">
+              <ul>
+                <li>@todo consider properties of good unit test "Art of Unit Testing" Roy Osherove pg 6</li>
+                <li>@todo consider pillars of good tests "Art of Unit Testing" Roy Osherove pg 171</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>A good solitary unit test gains ROI where a sociable test would not.</p>
+            <aside class="notes">
+              <ul>
+                <li>The principles we are about to look at will help you evaluate ROI.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              "Proving that code is correct is impractical.<br>
+              Testing does not guarantee correctness.<br>
+              However, good testing can minimize risk."
+              <p class="attribution">&mdash; Robert C. Martin "<a href="http://www.objectmentor.com/resources/books.html">Clean Code</a>"</p>
+            </blockquote>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>
+              The advantage of solitary unit testing is that<br>
+              the haystack is now a cotton ball.
+            </p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+
+
+<!--
+Why is this important?
+“If you want to refactor, the essential precondition is having solid tests.” pg 89
+
+“Refactoring requires tests. If you want to refactor, you have to write tests.” pg 91
+
+Martin Folwer Refactoring
+-->
+
+<!--
+make a play on this about how sociable catches what solitary doesn't:
+
+“How does one safely refactor? There are several options:
+Trust your coding abilities.
+Trust that your compiler will catch errors that you miss.
+Trust that your test suite will catch errors that you and your compiler will miss.
+Trust that code review will catch errors that you, your compiler, and your test suite miss.” Opdyke pg 391
+
+-->
+
+<!--
+“Code at the boundaries needs clear separation and tests that define expectations.” pg 120
+Robert C. Martin "Clean Code"
+-->
+
+        </section>
+
+<!--
+===============================================================================
+              Part II. Principles of Solitary Unit Testing
+===============================================================================
+-->
+
+        <section>
+          <section>
+            <h2>Part II. Principles of Solitary Unit Testing</h2>
+            <aside class="notes">
+              So, now we know that solitary unit testing is awesome, how do we do it?
+            </aside>
+          </section>
+
+          <section>
+            <h3>Dummy</h3>
+            <pre>
+              <code>
+  $dummy = $this->getMockBuilder('SomeClass')->getMock();
+  $cut = new ClassUnderTest($dummy);
+  $response = $cut->methodDoesntNeedDummy();
+  // assert something about the $response
+              </code>
+            </pre>
+            <p>... or just use null?</p>
+            <aside class="notes">
+              <ul>
+                <li>Assuming this doesn't get called.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Fake</h3>
+            <pre>
+              <code>
+  $fs = new FakeFileSystem();
+  $cut = new ClassUnderTest($fs);
+  $response = $cut->write('A string going to a log.');
+  // assert something about the $response
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+                <li>Guzzle is a good example.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Stub</h3>
+            <pre>
+              <code>
+  $stub = $this->getMockBuilder('User')->getMock();
+  $stub->method('getFirstName')->willReturn('First');
+  $stub->method('getLastName')->willReturn('Last');
+  $cut = new ClassUnderTest($stub);
+  $this->assertEquals('First Last', $cut->getFullName());
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+                <li>Assuming this doesn't get called.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Spy</h3>
+            <pre>
+              <code>
+                @todo add spy example
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Mock</h3>
+            <pre>
+              <code>
+                @todo add spy example
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+        </section>
+
+<!--
+===============================================================================
+              Part III. Solitary Unit Test Smells
+===============================================================================
+-->
+
+        <section>
+          <section>
+            <h2>Part III. Solitary Unit Test Smells</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Assertion roullette</h3>
+            <aside class="notes">
+              Easy to do b/c mixing state + behavior verification
+              Solution: one assert per test
+              Solution: assert last
+            </aside>
+          </section>
+
+          <section>
+            <h3>Fragile Test</h3>
+            test fails when SUT is changed in ways that do not affect the part the test is exercising
+            <aside class="notes">
+              Easy to do when there are side effects; but, this would happen anyway
+            </aside>
+          </section>
+
+          <section>
+            <h3>Obscure Test</h3>
+            difficult to understand the test at a glance
+            <aside class="notes">
+              Easy to do when using lots of mocks; it's hard to tell what is getting called!
+              Solution: improve our testing frameworks
+              Solution: use ObjectMother or DataBuilder
+              Solution: use custom assertions
+              Solution: expect literals
+              Solution: avoid use of setUp; use inline setup
+            </aside>
+          </section>
+
+          <section>
+            <h3>Test Code Duplication</h3>
+            the same test code is repeated many times
+            <aside class="notes">
+              Easy to do when needing to build complex test doubles or state.
+              Solution: Replace ObjectMother with DataBuilder
+            </aside>
+          </section>
+
+          <section>
+            <h3>High Test Maintaenance Cost</h3>
+            too much effort is spent maintaining tests
+            <aside class="notes">
+              Solution: avoid implementation overspecification
+              Solution: remove negative or low ROI tests
+              @todo list types of tests to remove from "Why you are wasting your time with unit testing"
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              "If it stinks, change it."
+              <p class="attribution">&mdash; Grandma Beck, discussing child-rearing philosophy, "<a href="http://martinfowler.com/books/refactoring.html">Refactoring</a>"</p>
+            </blockquote>
+            <aside class="notes">
+            </aside>
+          </section>
+
+        </section>
+
+<!--
+===============================================================================
+            Part IV. Motivations for Solitary Unit Testing
+===============================================================================
+-->
+
+        <section>
+          <section>
+            <h2>Part IV. Motivations for Solitary Unit Testing</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Solitary unit testing enables higher code coverage.</h3>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Solitary unit testing enables more swim lanes.</h3>
+            <aside class="notes">
+              You can test code that doesn't exist or is changing, as long as the interface doesn't change.
+              <p>@todo change word from swim lane to something else</p>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Solitary unit testing is faster than sociable unit testing.</h3>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              "Writing unit tests is reinventing functional programming<br>
+              in non-functional languages."
+              <p class="attribution">&mdash; Christian S., <a href="http://noss.github.io/2009/02/25/writing-unit-tests-is-reinventing-functional-programming-in-non-functional-languages.html">noss.github.io</a></p>
+            </blockquote>
+            <aside class="notes">
+              Yes, we do away with indirect inputs and outputs; but, we don't do away with the benefits of OO.
+            </aside>
+          </section>
+
+          <section>
+            Pure functions still need tests.
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              "It should not be underestimated how much easier these functions are to test than their state-filled counterparts."
+              <p class="attribution">&mdash; Simon Honeywell, "<a href="http://www.functionalphp.com/">Functional Programming in PHP</a>"</p>
+            </blockquote>
+            <aside class="notes">
+            </aside>
+          </section>
+
+        </section>
+
+<!--
+===============================================================================
+                          Thank You!
+===============================================================================
+-->
+
+        <section>
+          <section>
+            <h2>Thank You!</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>References</h3>
+
+            <ol>
+              <li>"<a href="https://en.wikipedia.org/wiki/Unit_testing">Unit Testing</a>", WikiPedia</li>
+              <li>"<a href="http://martinfowler.com/bliki/UnitTest.html">UnitTest</a>", Martin Fowler</li>
+              <li>"<a href="https://leanpub.com/wewut">Working Effectively With Unit Tests</a>", Jay Fields</li>
+              <li>"<a href="http://www.williamcaputo.com/archives/000019.html">TDD Pattern: Do not cross boundaries</a>", William E. Caputo</li>
+              <li>"<a href="http://www.objectmentor.com/resources/books.html">Clean Code</a>", Robert C. Martin</li>
+              <li>"<a href="http://martinfowler.com/books/refactoring.html">Refactoring</a>", Martin Fowler</li>
+              <li>"<a href="http://noss.github.io/2009/02/25/writing-unit-tests-is-reinventing-functional-programming-in-non-functional-languages.html">Writing unit tests is reinventing functional programming in non-functional languages</a>", Christian S.</li>
+              <li>"<a href="http://www.functionalphp.com/">Functional Programming in PHP</a>", Simon Honeywell</li>
+            </ol>
+
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Further Reading</h3>
+
+            <ol>
+              <li>See list of references.</li>
+              <li>"<a href="http://martinfowler.com/bliki/ObjectMother.html">Object Mother</a>", Martin Fowler</li>
+              <li>"<a href="http://www.natpryce.com/articles/000714.html">Test Data Builders: an alternative to the Object Mother pattern</a>", Nat Pryce</li>
+              <li>"<a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks Aren't Stubs</a>", Martin Fowler</li>
+              <li>"<a href="http://googletesting.blogspot.com/search/label/TotT">Google testing blog</a>"</li>
+              <li>"<a href="http://jawspeak.com/2011/07/16/improving-developers-enthusiasm-for-unit-tests-using-bubble-charts/">Improving developers enthusiasm for unit tests, using bubble charts</a>", Jonathan Andrew Wolter</li>
+              <li>"<a href="http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf">Why Most Unit Testing is Waste</a>", James O Coplien</li>
+              <li>"<a href="http://deliberate-software.com/dont-mock-concrete-classes/">Don't Mock Concrete Classes</a>", Steve Shogren</li>
+              <li>"<a href="http://xunitpatterns.com/">XUnit Test Patterns</a>", George Mezaros</li>
+              <li>"Working Effectively with Legacy Code", Michael C. Feathers</li>
+              <li>"<a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod">The Principles of OOD</a>", Robert C. Martin</li>
+              <li>"<a href="https://mike-bland.com/2012/08/16/oop-revisited.html">Object-Oriented Programming Revisited</a>", Mike Bland</li>
+              <li>"<a href="http://martinfowler.com/articles/testing-culture.html">Goto Fail, Heartbleed, and Unit Testing Culture</a>", Martin Fowler</li>
+              <li>"<a href="http://www.dwheeler.com/essays/heartbleed.html">How to Prevent the next Heartbleed</a>", David A. Wheeler</li>
+              <li>"<a href="http://motherboard.vice.com/read/how-is-critical-life-or-death-software-tested">How Is Critical 'Life or Death' Software Tested?</a>", Michael Byrne</li>
+            </ol>
 
             <aside class="notes">
             </aside>
           </section>
         </section>
+
 
       </div><!-- /.slides -->
 
