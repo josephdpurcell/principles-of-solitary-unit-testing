@@ -324,7 +324,9 @@ Robert C. Martin "Clean Code"
               <code>
   $dummy = $this->getMockBuilder('SomeClass')->getMock();
   $cut = new ClassUnderTest($dummy);
+
   $response = $cut->methodDoesntNeedDummy();
+
   // assert something about the $response
               </code>
             </pre>
@@ -342,7 +344,9 @@ Robert C. Martin "Clean Code"
               <code>
   $fs = new FakeFileSystem();
   $cut = new ClassUnderTest($fs);
+
   $response = $cut->write('A string going to a log.');
+
   // assert something about the $response
               </code>
             </pre>
@@ -361,7 +365,10 @@ Robert C. Martin "Clean Code"
   $stub->method('getFirstName')->willReturn('First');
   $stub->method('getLastName')->willReturn('Last');
   $cut = new ClassUnderTest($stub);
-  $this->assertEquals('First Last', $cut->getFullName());
+
+  $fullName = $cut->getFullName();
+
+  $this->assertEquals('First Last', $fullName);
               </code>
             </pre>
             <aside class="notes">
@@ -373,11 +380,13 @@ Robert C. Martin "Clean Code"
 
           <section>
             <h3>Spy</h3>
-            <pre>
-              <code>
-                @todo add spy example
-              </code>
-            </pre>
+  $user = $this->prophet->prophesize('User');
+  $cut = new ClassUnderTest($user->reveal());
+
+  $cut->getFullName();
+
+  $user->getFirstName()->shouldHaveBeenCalled();
+  $user->getLastName()->shouldHaveBeenCalled();
             <aside class="notes">
               <ul>
               </ul>
@@ -388,7 +397,14 @@ Robert C. Martin "Clean Code"
             <h3>Mock</h3>
             <pre>
               <code>
-                @todo add spy example
+  $stub = $this->getMockBuilder('User')->getMock();
+  $stub->expects($this->once())->method('getFirstName')->willReturn('First');
+  $stub->expects($this->once())->method('getLastName')->willReturn('Last');
+  $cut = new ClassUnderTest($stub);
+
+  $fullName = $cut->getFullName();
+
+  $this->assertEquals('First Last', $fullName);
               </code>
             </pre>
             <aside class="notes">
