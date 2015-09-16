@@ -3,28 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Principles of Solitary Unit Testing</title>
-
     <meta name="description" content="Principles of Solitary Unit Testing">
     <meta name="author" content="Joseph D. Purcell">
-
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="palantirnet-theme/assets/css/styles.css" id="theme">
+    <link rel="stylesheet" href="palantirnet-theme/css/styles.css" id="theme">
     <link rel="stylesheet" href="css/overrides.css" id="theme">
 
-    <!-- Code syntax highlighting -->
+    <!-- Code syntax highlighting
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    -->
 
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement( 'link' );
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'palantirnet-theme/css/print/pdf.css' : 'palantirnet-theme/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
 
@@ -33,11 +30,8 @@
     <![endif]-->
   </head>
   <!-- Change body class to "dark" if you prefer a dark theme, or "light" if you'd rather have a light theme-->
-  <body class="white">
+  <body class="light">
     <div class="reveal">
-      <div class="logo">
-        <p>Palantir.net</p>
-      </div>
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
@@ -642,6 +636,13 @@ Robert C. Martin "Clean Code"
 
       </div><!-- /.slides -->
 
+      <footer class="footer">
+        <a class="logo-wrapper" href="https://www.palantir.net/" title="Link to Palantir.net's website">
+          <div class="logo">
+            <p>Palantir.net</p>
+          </div>
+        </a>
+      </footer>
     </div><!-- /.reveal -->
 
     <script src="lib/js/head.min.js"></script>
