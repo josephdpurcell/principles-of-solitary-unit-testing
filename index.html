@@ -31,16 +31,15 @@
   </head>
   <!-- Change body class to "dark" if you prefer a dark theme, or "light" if you'd rather have a light theme-->
   <body class="light">
-    <div class="reveal">
+    <div class="reveal" style="font-size:3em">
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
 
         <!-- Introduction -->
         <section>
-          <section class="title">
+          <section class="title" style="font-size:80%">
             <h1>Principles of<br>Solitary Unit Testing</h1>
-            <!-- @todo i'm doing this for style, which is bad -->
             <h4>– DrupalCon Barcelona 2015 –</h4>
             <h3>by Joseph D. Purcell</h3>
             <aside class="notes">
@@ -48,53 +47,45 @@
           </section>
 
           <section>
-            <h1>Who am I?</h1>
+            <h2>Who am I?</h2>
+            <ul>
+              <li class="fragment">Engineer at Palantir</li>
+              <li class="fragment">Part of web dev since 2003</li>
+              <li class="fragment">&lt;3 learning and teaching</li>
+            </ul>
             <aside class="notes">
               <ul>
-                <li>Engineer at Palantir, a full service web agency based in Chicago</li>
-                <li>Part of web dev since 2003</li>
+                <li>Broad experience</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <h1>Who are you?</h1>
+            <h2>Who are you?</h2>
+            <ul>
+              <li class="fragment">You have some idea of unit testing.</li>
+              <li class="fragment">You want to be better at it.</li>
+            </ul>
             <aside class="notes">
               <ul>
-                <li>You know unit testing</li>
-                <li>You want to be better at it</li>
+                <li>Also, want to have better software designs</li>
               </ul>
             </aside>
           </section>
 
           <section>
             <pre style="font-size:120%;text-align:center;">
- 29513736
-·92842033
- _________
+  29513736
+x 92842033
+  _________
 
   ?
             </pre>
-
             <aside class="notes">
               <ul>
-                <li>Multiply these numbers</li>
-                <li>When you do, you go through a process to come to the right answer</li>
+                <li>What is the process you use?</li>
+                <li>An algorithm</li>
                 <li>Marc Sanz set record doing 10 diff sets in 4.5 min (<a href="http://www.recordholders.org/en/list/memory.html#8x8">source</a>)</li>
-              </ul>
-            </aside>
-          </section>
-
-          <section>
-            <!--
-            <p>There's a lot more to arithmetic than computing numbers.</p>
-            -->
-            <p>Choosing the right numbers is the hard part of arithmetic,<br>not the computation itself.</p>
-            <aside class="notes">
-              <ul>
-                <li>Do you want your engineers doing mental math calculating the dimesons of the lens on the Hubble?</li>
-                <li>or pharmacist LD50?</li>
-                <li>but cost-comparison of EVOO?</li>
               </ul>
             </aside>
           </section>
@@ -103,31 +94,36 @@
             <pre style="font-size:120%;text-align:center;">
 write a bubble sort
             </pre>
-
             <aside class="notes">
               <ul>
-                <li>you can write it for integers easy</li>
-                <li>what are you sorting?</li>
-                <li>why are you sorting?</li>
+                <li>What is the process you use?</li>
+                <li>TDD</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <p>Choosing the right problem to solve is the hard part of writing software,<br>not the keystrokes.</p>
+            <pre style="font-size:120%;text-align:center;">
+<b>write Drupal 8</b>
+            </pre>
             <aside class="notes">
               <ul>
+                <li>What is the process you use?</li>
+                <li>Solitary TDD</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <p>Solitary unit testing facilitates better software design.</p>
+            <h2>We need processes<br>
+            to help us do things well.</h2>
+            <ul style="font-size:85%">
+              <li class="fragment">Algorithms help you do arithmetic.</li>
+              <li class="fragment">Test Driven Development (TDD) helps you write software.</li>
+              <li class="fragment"><b>Solitary Unit Testing helps you write well designed software.</b></li>
+            </ul>
             <aside class="notes">
               <ul>
-                <li>...because it gives a framework to think about the "right" problems</li>
-                <li>This is the thesis.</li>
-                <li>We will look at how it does that later.</li>
               </ul>
             </aside>
           </section>
@@ -135,10 +131,10 @@ write a bubble sort
           <section>
             <h1>Overview</h1>
             <ol style="list-style-type:upper-roman">
-              <li>Definition</li>
-              <li>Principles</li>
-              <li>Test&nbsp;Smells</li>
-              <li>Motivations</li>
+              <li class="fragment">Definition</li>
+              <li class="fragment">Principles</li>
+              <li class="fragment">Test&nbsp;Smells</li>
+              <li class="fragment">Motivations</li>
             </ol>
             <aside class="notes">
             </aside>
@@ -155,7 +151,11 @@ write a bubble sort
           <section>
             <h2>I. Definition</h2>
             <aside class="notes">
-              Problem: many definitions of what unit test is and you may not know solitary vs sociable.
+              <ul>
+                <li>How many know what test doubles are?</li>
+                <li>How many know what it means to mock the boundary?</li>
+                <li>Problem: many definitions</li>
+              </ul>
             </aside>
           </section>
 
@@ -169,22 +169,10 @@ write a bubble sort
             </aside>
           </section>
 
-          <!--
           <section>
             <blockquote>
-            "unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use. Intuitively, one can view a unit as the smallest testable part of an application."
-            <p class="attribution">&mdash; <a href="https://en.wikipedia.org/wiki/Unit_testing">wikipedia.com</a></p>
-            </blockquote>
-            <aside class="notes">
-              WikiPedia is most often quoted; but really? that's the best we can do?
-            </aside>
-          </section>
-          -->
-
-          <section>
-            <blockquote>
-            "[I]t's a situational thing - the team decides what<br>
-            makes sense to be a unit for the purposes of their<br>
+            "[I]t's a situational thing - the team decides what
+            makes sense to be a unit for the purposes of their
             understanding of the system and its testing."
             <p class="attribution">&mdash; Martin Fowler, <a href="http://martinfowler.com/bliki/UnitTest.html">martinfowler.com</a></p>
             </blockquote>
@@ -194,24 +182,40 @@ write a bubble sort
           </section>
 
           <section>
-            <p>A unit test verifies a function's correctness against a specification.</p>
+            <p>A unit test verifies a function's correctness<br>
+            against a specification.</p>
             <aside class="notes">
               <ul>
-                <li>it meets all interpretations</li>
                 <li>"verify" is true to roots: formal verification</li>
                 <li>function = constructor, method, or function</li>
                 <li>there is nothing you can unit test that could not be described by this definition</li>
-                <li>@todo is there a better word than "function"? maybe subroutine?</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <p>There are two challenges with unit testing:</p>
-            <ol style="width:40%">
+            <p style="padding-left:3em;text-align:left">A unit is...</p>
+            <ul>
+              <li>a function (e.g. <code>t</code>)</li>
+              <li>a method on a class (e.g. <code>__construct</code>)</li>
+              <li>a script (.e.g <code>update.php</code>)</li>
+            </ul>
+            <p class="fragment" style="padding-left:3em;text-align:left">...<b>one thing</b></p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>There are two challenges with testing a unit:</p>
+            <ol style="width:60%">
               <li>indirect inputs (shared state)</li>
               <li>indirect outputs (side effects)</li>
             </ol>
+            <br>
+            <br>
+            <p class="fragment">... <em>anything that makes it not a pure function.</em></p>
             <aside class="notes">
               <ul>
                 <li>shared state: globals, env vars, db, fs, net</li>
@@ -221,7 +225,141 @@ write a bubble sort
           </section>
 
           <section>
+            <p>Test doubles are the tools we use to test code that has shared state and/or side effects.</p>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
             <h3>Test Doubles</h3>
+            <dl>
+              <dt class="fragment" data-fragment-index="1">Dummy</dt>
+                <dd class="fragment" data-fragment-index="1">never called</dd>
+              <dt class="fragment" data-fragment-index="2">Fake</dt>
+                <dd class="fragment" data-fragment-index="2">is called</dd>
+              <dt class="fragment" data-fragment-index="3">Stub</dt>
+                <dd class="fragment" data-fragment-index="3">provide indirect inputs</dd>
+              <dt class="fragment" data-fragment-index="4">Spy</dt>
+                <dd class="fragment" data-fragment-index="4">provide indirect inputs, capture indirect outputs</dd>
+              <dt class="fragment" data-fragment-index="5">Mock</dt>
+                <dd class="fragment" data-fragment-index="5">provide indirect inputs, verify indirect outputs</dd>
+            </dl>
+            <aside class="notes">
+              <ul>
+                <li>Definitions are inconsistent, see xUnit book</li>
+                <li>PHPUnit terminology does not make it clear which you're doing</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Dummy</h3>
+            <pre>
+              <code>
+  $dummy = $this->getMockBuilder('SomeClass')->getMock();
+  $cut = new ClassUnderTest($dummy);
+
+  $response = $cut->methodDoesntNeedDummy();
+
+  // Make an assertion.
+              </code>
+            </pre>
+            <p style="font-size:80%">... or just use <code>null</code>?</p>
+            <aside class="notes">
+              <ul>
+                <li>Dummy is for "utility" value</li>
+                <li>Assuming this doesn't get called.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Fake</h3>
+            <pre>
+              <code>
+  $fs = new FakeFileSystem();
+  $cut = new ClassUnderTest($fs);
+
+  $response = $cut->write('A string going to a log.');
+
+  // Make an assertion.
+              </code>
+            </pre>
+            <p style="font-size:80%">Example: write a fake for a logger.</p>
+            <aside class="notes">
+              <ul>
+                <li>Fake reduces complexity</li>
+                <li>e.g. you might fake a log class</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Stub</h3>
+            <pre>
+              <code>
+  $stub = $this->getMockBuilder('User')->getMock();
+  $stub->method('getFirstName')->willReturn('First');
+  $stub->method('getLastName')->willReturn('Last');
+  $cut = new ClassUnderTest($stub);
+
+  $fullName = $cut->getFullName();
+
+  $this->assertEquals('First Last', $fullName);
+              </code>
+            </pre>
+            <p style="font-size:80%">Like a dummy, but is called and returns values.</li>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Spy</h3>
+            <pre>
+              <code>
+  $user = $this->prophet->prophesize('User');
+  $cut = new ClassUnderTest($user->reveal());
+
+  $cut->getFullName();
+
+  $user->getFirstName()->shouldHaveBeenCalled();
+  $user->getLastName()->shouldHaveBeenCalled();
+              </code>
+            </pre>
+            <p style="font-size:80%">Like a stub, but captures calls.</li>
+            <aside class="notes">
+              <ul>
+                <li>You can provide values with a spy</li>
+                <li>Must use prophecy</li.
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Mock</h3>
+            <pre>
+              <code>
+  $stub = $this->getMockBuilder('User')->getMock();
+  $stub->expects($this->once())->method('getFirstName')->willReturn('First');
+  $stub->expects($this->once())->method('getLastName')->willReturn('Last');
+  $cut = new ClassUnderTest($stub);
+
+  $fullName = $cut->getFullName();
+              </code>
+            </pre>
+            <p style="font-size:80%">Like a spy, but runs assertions on execution of CUT.</li>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Recap of Test Doubles</h3>
             <dl>
               <dt>Dummy</dt>
                 <dd>never called</dd>
@@ -230,19 +368,19 @@ write a bubble sort
               <dt>Stub</dt>
                 <dd>provide indirect inputs</dd>
               <dt>Spy</dt>
-                <dd>(optionally) provide indirect inputs, capture indirect outputs</dd>
+                <dd>provide indirect inputs, capture indirect outputs</dd>
               <dt>Mock</dt>
-                <dd>(optionally) provide indirect inputs, verify indirect outputs</dd>
+                <dd>provide indirect inputs, verify indirect outputs</dd>
             </dl>
             <aside class="notes">
-              <ul>
-                <li>These are the tools to deal with indirection in the CUT.</li>
-              </ul>
+              Questions?
             </aside>
           </section>
 
           <section>
             <h3>What should you double?</h3>
+            <p class="fragment">It depends if you're doing<br>
+            Sociable or Solitary unit testing.</p>
             <aside class="notes">
               <ul>
                 <li>this is the big question</li>
@@ -252,7 +390,26 @@ write a bubble sort
           </section>
 
           <section>
-            <h3>Two Appraoches:<br>Sociable vs Solitary</h3>
+            <div style="float:left;width:46%">
+              <h3>Sociable</h3>
+              <ol>
+                <li class="fragment" data-fragment-index="1">Cross some boundaries</li>
+                <li class="fragment" data-fragment-index="2">One or more concrete classes during test</li>
+              </ol>
+            </div>
+            <div style="float:left;width:8%">
+              <h3>vs</h3>
+            </div>
+            <div style="float:right;width:46%">
+              <h3>Solitary</h3>
+              <ol>
+                <li class="fragment" data-fragment-index="1">Never cross boundaries</li>
+                <li class="fragment" data-fragment-index="2">One concrete class during test</li>
+              </ol>
+            </div>
+            <div style="width:100%;float:left;font-size:80%;margin-top:2em">
+              <p class="fragment" data-fragment-index="2">Source: Jay Fields, "<a href="https://leanpub.com/wewut">Working Effectively With Unit Tests</a>"</p>
+            </div>
             <aside class="notes">
               <ul>
               </ul>
@@ -260,23 +417,7 @@ write a bubble sort
           </section>
 
           <section>
-            <h3>Sociable</h3>
-            <p>Any test that is not a solitary test.</p>
-            <aside class="notes">
-              <ul>
-              </ul>
-            </aside>
-          </section>
-
-          <section>
-            <h3>Solitary</h3>
-            <blockquote>
-            <ol>
-              <li>Never cross boundaries</li>
-              <li>The Class Under Test should be the only concrete class found in a test</li>
-            </ol>
-            <p class="attribution">&mdash; Jay Fields, "<a href="https://leanpub.com/wewut">Working Effectively With Unit Tests</a>"</p>
-            </blockquote>
+            <h3>What is a boundary?</h3>
             <aside class="notes">
               <ul>
               </ul>
@@ -293,48 +434,12 @@ write a bubble sort
             </blockquote>
             <aside class="notes">
               <ul>
-                <li>@todo how to add a see also to Michael C. Feathers "Working Effectively With Legacy Code" concept of "Seams"</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <p>A boundary is an indirect input or output.</p>
-            <aside class="notes">
-              <ul>
-                <li>i.e. shared state or side effects</li>
-                <li>@todo validate this is a good def</li>
-              </ul>
-            </aside>
-          </section>
-
-          <!--
-          <section>
-            <h3>What is a good solitary unit test?</h3>
-            <aside class="notes">
-              <ul>
-                <li>@todo consider properties of good unit test "Art of Unit Testing" Roy Osherove pg 6</li>
-                <li>@todo consider pillars of good tests "Art of Unit Testing" Roy Osherove pg 171</li>
-              </ul>
-            </aside>
-          </section>
-
-          <section>
-            <p>A good solitary unit test gains ROI where a sociable test would not.</p>
-            <aside class="notes">
-              <ul>
-                <li>The principles we are about to look at will help you evaluate ROI.</li>
-              </ul>
-            </aside>
-          </section>
-
-          <section>
-            <blockquote>
-              "Proving that code is correct is impractical.<br>
-              Testing does not guarantee correctness.<br>
-              However, good testing can minimize risk."
-              <p class="attribution">&mdash; Robert C. Martin "<a href="http://www.objectmentor.com/resources/books.html">Clean Code</a>"</p>
-            </blockquote>
+            <h3 style="font-size:120%">What does "one concrete class" mean?</h3>
             <aside class="notes">
               <ul>
               </ul>
@@ -342,10 +447,13 @@ write a bubble sort
           </section>
 
           <section>
-            <p>
-              The advantage of solitary unit testing is that<br>
-              the haystack is now a cotton ball.
-            </p>
+            <ul>
+              <li>Use a double for dependencies.</li>
+              <li>Collaborators that return objects<br>
+              should return doubles.</li>
+              <li>No statics.</li>
+              <li><em>Caveat: value objects don't count.</em></li>
+            </ul>
             <aside class="notes">
               <ul>
               </ul>
@@ -353,39 +461,18 @@ write a bubble sort
           </section>
 
           <section>
-            <h2>Questions?</h2>
+            <h3>Consider three levels of testing:</h3>
+            <ol>
+              <li>Solitary (e.g. UnitTestBase)</li>
+              <li>Sociable (e.g. KernelTestBase)</li>
+              <li>Functional (e.g. BrowserTestBase)</li>
+            </ol>
+            <br>
+            <br>
+            <p><em>Point of confusion: these can all be written in PHPUnit.</em></p>
             <aside class="notes">
-              Pause for questions about the definition.
             </aside>
           </section>
-          -->
-
-
-
-<!--
-Why is this important?
-“If you want to refactor, the essential precondition is having solid tests.” pg 89
-
-“Refactoring requires tests. If you want to refactor, you have to write tests.” pg 91
-
-Martin Folwer Refactoring
--->
-
-<!--
-make a play on this about how sociable catches what solitary doesn't:
-
-“How does one safely refactor? There are several options:
-Trust your coding abilities.
-Trust that your compiler will catch errors that you miss.
-Trust that your test suite will catch errors that you and your compiler will miss.
-Trust that code review will catch errors that you, your compiler, and your test suite miss.” Opdyke pg 391
-
--->
-
-<!--
-“Code at the boundaries needs clear separation and tests that define expectations.” pg 120
-Robert C. Martin "Clean Code"
--->
 
         </section>
 
@@ -404,7 +491,7 @@ Robert C. Martin "Clean Code"
           </section>
 
           <section>
-            <h3>Format of a Unit Test</h3>
+            <h3>Layout of a Unit Test</h3>
             <dl>
               <dt>Arrange</dt>
                 <dd>Arrange all necessary preconditions and inputs. </dd>
@@ -413,17 +500,23 @@ Robert C. Martin "Clean Code"
               <dt>Assert</dt>
                 <dd>Assert that the expected results have occurred.</dd>
             </dl>
-            <p>(Source: <a href="http://c2.com/cgi/wiki?ArrangeActAssert">c2.com</a>)</p>
+            <div style="width:100%;float:left;font-size:80%;margin-top:2em">
+              <p>Source: Cunningham Ward, <a href="http://c2.com/cgi/wiki?ArrangeActAssert">c2.com</a></p>
+            </div>
             <aside class="notes">
+              When looking at these examples, this is how you read them
             </aside>
           </section>
 
           <section>
-            <h3>Example 1: Drupal\Core\Batch\BatchStorage</h3>
+            <h3>Example 1</h3>
+            <code>Drupal\Core\Batch\BatchStorage</code>
+          </section>
+
+          <section>
             <pre style="font-size:75%">
               <code>
   public function load($id) {
-    // Ensure that a session is started before using the CSRF token generator.
     $this->session->start();
     $batch = $this->connection->query("SELECT batch FROM {batch} WHERE bid = :bid AND token = :token", array(
       ':bid' => $id,
@@ -438,13 +531,22 @@ Robert C. Martin "Clean Code"
             </pre>
             <aside class="notes">
               <ul>
-                <li>We will test that session start was called</li>
+                <li>What shared state or side effects are in here?
+                  <ul>
+                    <li>indirect output: session start</li>
+                    <li>indirect input: get data from db</li>
+                  </ul>
+                </li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <pre style="font-size:75%">
+            <h3>Let's test using a mock</h3>
+          </section>
+
+          <section>
+            <pre style="font-size:75%;overflow:scroll;" class="hljs php">
   public function test_load_starts_session() {
     $statement = $this->getMock(StatementInterface::class);
     $connection = $this->getMockBuilder(Connection::class)
@@ -463,13 +565,23 @@ Robert C. Martin "Clean Code"
             </pre>
             <aside class="notes">
               <ul>
-                <li>Problem is that we fail to assert last</li>
+                <li>Did we meet the two principles? Yes</li>
+                <li>What is the problem?</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <pre style="font-size:75%">
+            <h3>Problem: we fail to assert last.</h3>
+            <h3 class="fragment">
+          </section>
+
+          <section>
+            <h3>Let's test using a spy</h3>
+          </section>
+
+          <section>
+            <pre style="font-size:75%;overflow:scroll;" class="hljs php">
   public function test_load_starts_session() {
     $prophet = new Prophet();
     $statement = $this->getMock(StatementInterface::class);
@@ -495,8 +607,12 @@ Robert C. Martin "Clean Code"
           </section>
 
           <section>
-            <h3>Example 2: <span style="font-size:78%">Drupal\Core\EventSubscriber\MaintenanceModeSubscriber</span></h3>
-            <pre style="font-size:65%">
+            <h3>Example 2</h3>
+            <code style="font-size:78%">Drupal\Core\EventSubscriber\MaintenanceModeSubscriber</code>
+          </section>
+
+          <section>
+            <pre style="font-size:65%;">
               <code>
   public function onKernelRequestMaintenance(GetResponseEvent $event) {
     $route_match = RouteMatch::createFromRequest($event->getRequest());
@@ -514,7 +630,7 @@ Robert C. Martin "Clean Code"
       else {
         if ($route_match->getRouteName() != 'system.site_maintenance_mode') {
           if ($this->account->hasPermission('administer site configuration')) {
-            $this->drupalSetMessage($this->t('Operating in maintenance mode. <a href="@url">Go online.</a>', array('@url' => $this->urlGenerator->generate('system.                  site_maintenance_mode'))), 'status', FALSE);
+            $this->drupalSetMessage($this->t('Operating in maintenance mode. <a href="@url">Go online.</a>', array('@url' => $this->urlGenerator->generate('system.site_maintenance_mode'))), 'status', FALSE);
           }
           else {
             $this->drupalSetMessage($this->t('Operating in maintenance mode.'), 'status', FALSE);
@@ -527,103 +643,88 @@ Robert C. Martin "Clean Code"
             </pre>
             <aside class="notes">
               <ul>
-                <li>We will test that the maintenance page was set.</li>
-                <li>Problem is, we can't test this.</li>
+                <li>What are the side effects or shared state?</li>
               </ul>
             </aside>
           </section>
 
           <section>
+            <h3>We can't solitary test this.</h3>
+            <ol class="fragment">
+              <li><code>\Drupal::service</code></li>
+              <li><code>drupal_maintenance_theme()</code></li>
+              <li><code>Xss::filterAdmin</code></li>
+              <li><code>SafeMarkup::format</code></li>
+            </ol>
+            <aside class="notes">
+              <ul>
+                <li>Can you name them?
+                  <ol>
+                    <li><code>\Drupal::service</code></li>
+                    <li><code>drupal_maintenance_theme()</code></li>
+                    <li><code>Xss::filterAdmin</code></li>
+                    <li><code>SafeMarkup::format</code></li>
+                  </ol>
+                </li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3 style="text-align:left">Let's...</h3>
+            <ol>
+              <li>Delete the untestable code and re-implement later.</li>
+              <li>Break the subscriber in two:
+                <ul>
+                  <li>setting response</li>
+                  <li>showing a message</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+          <section>
+            <h3>Example 2: Revision 1, Part 1</h3>
+            <code style="font-size:78%">Drupal\Core\EventSubscriber\MaintenanceModePageOverrideSubscriber</code>
+          </section>
+
+          <section>
+            <p>Create an interface to implement later<br>
+            <code>Drupal\Core\Site\MaintenanceModePageInterface</code></p>
+
             <pre style="font-size:65%">
               <code>
-  public function onKernelRequestMaintenance(GetResponseEvent $event) {
-    $route_match = RouteMatch::createFromRequest($event->getRequest());
-    if ($this->maintenanceMode->applies($route_match)) {
-      //\Drupal::service('page_cache_kill_switch')->trigger();
-      if (!$this->maintenanceMode->exempt($this->account)) {
-        //drupal_maintenance_theme();
-        $content = Xss::filterAdmin(SafeMarkup::format($this->config->get('system.maintenance')->get('message'), array(
-          '@site' => $this->config->get('system.site')->get('name'),
-        )));
-        $response = $this->bareHtmlPageRenderer->renderBarePage(['#markup' => $content], $this->t('Site under maintenance'), 'maintenance_page');
-        $response->setStatusCode(503);
-        $event->setResponse($response);
-      }
-      else {
-        if ($route_match->getRouteName() != 'system.site_maintenance_mode') {
-          if ($this->account->hasPermission('administer site configuration')) {
-            $this->drupalSetMessage($this->t('Operating in maintenance mode. <a href="@url">Go online.</a>', array('@url' => $this->urlGenerator->generate('system.                  site_maintenance_mode'))), 'status', FALSE);
-          }
-          else {
-            $this->drupalSetMessage($this->t('Operating in maintenance mode.'), 'status', FALSE);
-          }
-        }
-      }
-    }
-  }
-              </code>
-            </pre>
-            <aside class="notes">
-              <ul>
-                <li>Comment out the kill switch trigger and drupal_maintenance_theme call</li>
-                <li>We'll find solutions to those later</li>
-              </ul>
-            </aside>
+namespace Drupal\Core\Site;
+
+/**
+ * Defines the interface for a maintenance mode page.
+ */
+interface MaintenanceModePageInterface {
+
+  /**
+   * Returns a Response object.
+   *
+   * @return \Drupal\Core\Render\HtmlResponse
+   *   The response object for a maintenance page.
+   */
+  public function getResponse();
+
+}
+            </code>
+          </pre>
+
           </section>
 
           <section>
-            <pre style="font-size:65%;word-wrap:normal;overflow:scroll;">
-  public function test_applicable_page_sets_maintenance_page_response() {
-    $prophet = new Prophet();
-    $translation = $this->getMock(TranslationInterface::class);
-    $url_generator = $this->getMock(UrlGeneratorInterface::class);
-    $account = $this->getMock(AccountInterface::class);
-    $maintenance_mode = $this->getMock(MaintenanceModeInterface::class);
-    $maintenance_mode->method('applies')->willReturn(true);
-    $config_factory = $this->getMock(ConfigFactoryInterface::class);
-    $value_map = [
-      ['system.maintenance', $config_factory],
-      ['message', ''],
-      ['system.site', $config_factory],
-      ['message', ''],
-    ];
-    $config_factory->method('get')->will($this->returnValueMap($value_map));
-    $response = $this->getMock(HtmlResponse::class);
-    $bare_html_page_renderer = $this->getMock(BareHtmlPageRendererInterface::class);
-    $bare_html_page_renderer->method('renderBarePage')->willReturn($response);
-    $subscriber = new MaintenanceModeSubscriber($maintenance_mode, $config_factory, $translation, $url_generator, $account, $bare_html_page_renderer);
-    $request = $this->getMock(Request::class);
-    $request->attributes = $this->getMock(ParameterBag::class);
-    $event = $prophet->prophesize(GetResponseEvent::class);
-    $event->setResponse(Argument::cetera())->willReturn();
-    $event->getRequest()->willReturn($request);
-
-    $subscriber->onKernelRequestMaintenance($event->reveal());
-
-    <b>$event->setResponse($response)->shouldHaveBeenCalled();</b>
-  }
-            </pre>
-            <aside class="notes">
-              <ul>
-                <li>Problem is that we fail to assert last</li>
-                <li>And there is a LOT of arranging we have to do, mostly around building HTML</li>
-              </ul>
-            </aside>
-          </section>
-
-          <section>
-            <h3>Example 2 Revised: <span style="font-size:78%">Drupal\Core\EventSubscriber\MaintenanceModePageOverrideSubscriber</span></h3>
+            <p>Create a subscriber to override page rendering</p>
+            <code style="font-size:78%">Drupal\Core\EventSubscriber\MaintenanceModePageOverrideSubscriber</code>
             <pre style="font-size:65%">
               <code>
   public function onKernelRequestMaintenance(GetResponseEvent $event) {
     $route_match = RouteMatch::createFromRequest($event->getRequest());
     if ($this->maintenanceMode->applies($route_match)) {
       if (!$this->maintenanceMode->exempt($this->account)) {
-        $content = Xss::filterAdmin(SafeMarkup::format($this->config->get('system.maintenance')->get('message'), array(
-          '@site' => $this->config->get('system.site')->get('name'),
-        )));
-        $response = $this->bareHtmlPageRenderer->renderBarePage(['#markup' => $content], 'Site under maintenance', 'maintenance_page');
-        $response->setStatusCode(503);
+        $response = $this->maintenancePage->getResponse();
         $event->setResponse($response);
       }
     }
@@ -632,24 +733,31 @@ Robert C. Martin "Clean Code"
             </pre>
             <aside class="notes">
               <ul>
-                <li>Now, all this does is set the response if it's the maintenance page</li>
-                <li>The class now has 4 dependencies instead of 6</li>
-                <li>Recommendation: move it out to a service</li>
-                <li>Let's see what our test looks like</li>
               </ul>
             </aside>
           </section>
 
           <section>
-            <pre style="font-size:65%;word-wrap:normal;overflow:scroll;">
+            <h3 style="font-size:1.25em">Improvements:</h3>
+            <ul>
+              <li>Now our class does one thing</li>
+              <li>Which means we can test one thing</li>
+              <li>The class now has 3 dependencies instead of 6</li>
+              <li>It's more readable</li>
+              <li>It's easier to test</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre style="font-size:75%;overflow:scroll;" class="hljs php">
   public function test_applicable_page_sets_maintenance_page_response() {
     $prophet = new Prophet();
     $account = $this->getMock(AccountInterface::class);
     $maintenance_mode = $this->getMock(MaintenanceModeInterface::class);
     $maintenance_mode->method('applies')->willReturn(true);
-    $maintenance_page = $this->getMock(MaintenanceModePageInterface::class);
+    <span class="fragment bold">$maintenance_page = $this->getMock(MaintenanceModePageInterface::class);</span>
     $response = $this->getMock(HtmlResponse::class);
-    $maintenance_page->method('getResponse')->willReturn($response);
+    <span class="fragment bold">$maintenance_page->method('getResponse')->willReturn($response);</span>
     $subscriber = new MaintenanceModePageOverrideSubscriber($maintenance_mode, $account, $maintenance_page);
     $request = $this->getMock(Request::class);
     $request->attributes = $this->getMock(ParameterBag::class);
@@ -659,13 +767,11 @@ Robert C. Martin "Clean Code"
 
     $subscriber->onKernelRequestMaintenance($event->reveal());
 
-    $event->setResponse($response)->shouldHaveBeenCalled();
+    <span class="fragment bold">$event->setResponse($response)->shouldHaveBeenCalled();</span>
   }
             </pre>
             <aside class="notes">
               <ul>
-                <li>Problem is that we fail to assert last</li>
-                <li>And there is a LOT of arranging we have to do</li>
               </ul>
             </aside>
           </section>
@@ -686,61 +792,234 @@ Robert C. Martin "Clean Code"
           </section>
 
           <section>
-            <h3>Assertion roullette</h3>
+            <h3>Obscure Test</h3>
+            <p>What is this test doing!?</p>
             <aside class="notes">
-              Easy to do b/c mixing state + behavior verification
-              Solution: one assert per test
-              Solution: assert last
+              <ul>
+                <li>side effects and shared state &rarr; complex tests</li>
+                <li>Solutions:
+                  <ul>
+                    <li>use ObjectMother or DataBuilder</li>
+                    <li>use custom assertions</li>
+                    <li>expect literals</li>
+                    <li>avoid use of setUp; use inline setup</li>
+                  </ul>
+                </li>
+              </ul>
             </aside>
           </section>
 
           <section>
+            <h4>Try: Object Mother</h3>
+            <pre>
+              <code>
+              class UserMother {
+                public function getJohnDoe() {
+                  var $user = new User();
+                  $user->setFirstName('John');
+                  $user->setLastName('Doe');
+                  return $user;
+                }
+              }
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Try: Data Builder</h3>
+            <pre>
+              <code>
+              class UserBuilder {
+                protected $user;
+
+                public function __construct() {
+                  $this->user = new User();
+                }
+
+                public function withNoPosts() {
+                  foreach ($this->user->getPosts() as $post) {
+                    $this->user->removePost($post);
+                  }
+                  return $this;
+                }
+
+                public function with10Posts() {
+                  for (var $i = 0; $i < 10; $i++) {
+                    $this->user->addPost(new Post());
+                  }
+                  return $this;
+                }
+
+                public function build() {
+                  return $this->user;
+                }
+              }
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Try: Custom Assertion</h3>
+            <pre>
+              <code>
+              class UserTest extends \PHPUnit_Framework_TestCase {
+
+                use UserAssertions;
+
+                public function test_something_complicated() {
+                  // Assemble...
+
+                  // Activate...
+
+                  $this->assertHasNoPosts();
+                }
+              }
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Try: Expect Literals</h3>
+            <p style="text-align:left">Bad:</p>
+            <pre>
+              <code>
+                $this->assertEquals('<div>' . $something . '</div>', $value);
+              </code>
+            </pre>
+            <p style="text-align:left">Good:</p>
+            <pre>
+              <code>
+                $this->assertEquals('<div>A string literal</div>', $value);
+              </code>
+            </pre>
+            <aside class="notes">
+              <ul>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Assertion Roulette</h3>
+            <p>Which assertion failed? I have no idea.</p>
+            <aside class="notes">
+              <ul>
+                <li>Indirectly related</li>
+                <li>Easy to want to do many assertions w/Mocks and Spies</li>
+                <li>Easy to turn stub into a spy</li>
+                <li>Solution: one assert per test</li>
+                <li>Solution: assert last</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Try: One assertion per test</h4>
+            <p style="text-align:left">Bad:</p>
+            <pre>
+              <code>
+                $this->assertEquals('John', $user->getFirstName());
+                $this->assertEquals('Doe', $user->getLastName());
+              </code>
+            </pre>
+            <p style="text-align:left">Good:</p>
+            <pre>
+              <code>
+                $this->assertEquals('John', $user->getFirstName());
+              </code>
+            </pre>
+            <p style="text-align:left">Good:</p>
+            <pre>
+              <code>
+                $this->assertName('John', 'Doe', $user);
+              </code>
+            </pre>
+          </section>
+
+          <section>
             <h3>Fragile Test</h3>
-            test fails when SUT is changed in ways that do not affect the part the test is exercising
+            <p>I didn't change what this CUT!? What happened?</p>
             <aside class="notes">
               Easy to do when there are side effects; but, this would happen anyway
             </aside>
           </section>
 
           <section>
-            <h3>Obscure Test</h3>
-            difficult to understand the test at a glance
+            <h4>Try:</h4>
+            <ul>
+              <li>Eliminate dependencies</li>
+              <li>Eliminate side effects</li>
+              <li>Eliminate shared state</li>
+              <li>Avoid test over-specification</li>
+            </ul>
             <aside class="notes">
-              Easy to do when using lots of mocks; it's hard to tell what is getting called!
-              Solution: improve our testing frameworks
-              Solution: use ObjectMother or DataBuilder
-              Solution: use custom assertions
-              Solution: expect literals
-              Solution: avoid use of setUp; use inline setup
             </aside>
           </section>
 
           <section>
             <h3>Test Code Duplication</h3>
-            the same test code is repeated many times
+            <p>Why am I repeating myself so much?</p>
+            <p>Writing these tests takes way too long.</p>
             <aside class="notes">
-              Easy to do when needing to build complex test doubles or state.
-              Solution: Replace ObjectMother with DataBuilder
+              phpcpd will detect this
             </aside>
           </section>
 
           <section>
-            <h3>High Test Maintaenance Cost</h3>
-            too much effort is spent maintaining tests
+            <h4>Try:</h4>
+            <ul>
+              <li>Object Mother</li>
+              <li>Data Builder</li>
+              <li>Add abstractions where there is high afferent coupling</li>
+            </ul>
             <aside class="notes">
-              Solution: avoid implementation overspecification
-              Solution: remove negative or low ROI tests
-              @todo list types of tests to remove from "Why you are wasting your time with unit testing"
+            </aside>
+          </section>
+
+          <section>
+            <h3>High Test Maintenance Cost</h3>
+            <p>I spend more time changing tests than code!!!</p>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h4>Try:</h4>
+            <ul>
+              <li>Use the right test strategy for the job<br>
+                <small><em>Solitary unit testing isn't a testing panacea!</em></small>
+              </li>
+              <li>Remove negative or low ROI tests</li>
+              <li>Object Mother / Data Builder</li>
+              <li>Add abstractions where there is high coupling</li>
+              <li>Avoid test over-specification</li>
+            </ul>
+            <aside class="notes">
             </aside>
           </section>
 
           <section>
             <blockquote>
               "If it stinks, change it."
-              <p class="attribution">&mdash; Grandma Beck, discussing child-rearing philosophy, "<a href="http://martinfowler.com/books/refactoring.html">Refactoring</a>"</p>
+              <p style="font-size:60%" class="attribution">&mdash; Grandma Beck, discussing child-rearing philosophy, "<a href="http://martinfowler.com/books/refactoring.html">Refactoring</a>"</p>
             </blockquote>
             <aside class="notes">
             </aside>
+          </section>
+
+          <section>
+            <p>Solitary unit testing makes bad OOP stinky.</p>
           </section>
 
         </section>
@@ -759,26 +1038,32 @@ Robert C. Martin "Clean Code"
           </section>
 
           <section>
-            <h3>Solitary unit testing enables higher code coverage.</h3>
+            <h3>Solitary unit testing enables<br>
+            higher code coverage.</h3>
             <aside class="notes">
+              You can get to more paths
             </aside>
           </section>
 
           <section>
-            <h3>Solitary unit testing enables decoupling<br>testing the interface from implementation.</h3>
+            <h3>Solitary unit testing promotes decoupling.</h3>
             <aside class="notes">
+              See example 2.
               You can test code that doesn't exist or is changing, as long as the interface doesn't change.
             </aside>
           </section>
 
           <section>
-            <h3>Solitary unit testing is faster than sociable unit testing.</h3>
+            <h3>Solitary unit testing is faster<br>
+            than sociable unit testing.</h3>
             <aside class="notes">
+              What if we had a solitary test suite we could easily run locally?
             </aside>
           </section>
 
           <section>
-            <h3>Solitary unit testing enables better software designs.</h3>
+            <h3>Solitary unit testing enables<br>
+            better software designs.</h3>
             <aside class="notes">
               Pure functions are inherently easier to test
             </aside>
@@ -786,26 +1071,97 @@ Robert C. Martin "Clean Code"
 
           <section>
             <blockquote>
-              "Writing unit tests is reinventing functional programming<br>
+              "Writing unit tests is reinventing<br>
+              functional programming<br>
               in non-functional languages."
               <p class="attribution">&mdash; Christian S., <a href="http://noss.github.io/2009/02/25/writing-unit-tests-is-reinventing-functional-programming-in-non-functional-languages.html">noss.github.io</a></p>
             </blockquote>
             <aside class="notes">
-              Yes, we do away with indirect inputs and outputs; but, we don't do away with the benefits of OO.
             </aside>
           </section>
 
           <section>
-            Pure functions still need tests.
-            <aside class="notes">
-            </aside>
+            <p>Solitary unit testing motivates us towards pure functions while allowing us to keep the benefits of OOP.</p>
           </section>
 
           <section>
             <blockquote>
               "It should not be underestimated how much easier these functions are to test than their state-filled counterparts."
-              <p class="attribution">&mdash; Simon Honeywell, "<a href="http://www.functionalphp.com/">Functional Programming in PHP</a>"</p>
+              <p style="font-size:70%" class="attribution">&mdash; Simon Honeywell, "<a href="http://www.functionalphp.com/">Functional Programming in PHP</a>"</p>
             </blockquote>
+            <aside class="notes">
+            </aside>
+          </section>
+
+        </section>
+
+<!--
+===============================================================================
+                               Conclusion
+===============================================================================
+-->
+
+        <section>
+
+          <section>
+            <h3>Ok, but where do I start?</h3>
+          </section>
+
+          <section>
+            <img src="assets/drupal-code-metrics.png">
+            <small><em>Drupal 8 code metrics generated by <a href="http://www.phpmetrics.org/">phpmetrics.org</a>, see <a href="assets/d8-phpmetrics-f3f3efae7d8b47947ff273f8480dd44798cead7b.html">results</a>.</em></small>
+            <aside class="notes">
+              <ul>
+                <li>Size = Volume</li>
+                <li>cyclo b/c indicator that you could be doing too much</li>
+                <li>afferent b/c a class that knows to much</li>
+                <li>efferent is usually ok</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <img src="assets/drupal-code-metrics-annotated.png">
+            <aside class="notes">
+              <ul>
+                <li>high cyclo: break down into smaller AND good solitary unit tests</li>
+                <li>high afferent: add abstractions AND good sociable tests</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3 style="font-size:120%;text-align:left">Why is Symfony so successful for re-use?</h3>
+            <ul>
+              <li class="fragment">It's good object oriented code.</li>
+              <li class="fragment">No surprise: the tests are mostly (entirely?) solitary.</li>
+            </ul>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h3>Recap</h3>
+            <ul>
+              <li class="fragment">Solitary Unit Testing:
+                <ul>
+                  <li>Never cross boundaries</li>
+                  <li>One concrete class during test</li>
+                </ul>
+              </li>
+              <li class="fragment">A boundary is an indirect input or output.</li>
+              <li class="fragment">Use Test Doubles to draw the boundary.</li>
+            </ul>
+          </section>
+
+          <section style="text-align:left">
+            <h3 style="font-size:120%">Solitary testable code means lower coupling</h3>
+            <p class="fragment">&nbsp;&nbsp;means fewer merge conflicts (D8 feature branches?)</p>
+            <p class="fragment">&nbsp;&nbsp;means higher collaboration</p>
+            <p class="fragment">&nbsp;&nbsp;means faster development</p>
+            <p class="fragment">&nbsp;&nbsp;means quicker innovation</p>
+            <p class="fragment">&nbsp;&nbsp;means closer to "Drupal 2020" ready (Crell's session)</li>
+            <p class="fragment">&nbsp;&nbsp;means cake + eating</p>
             <aside class="notes">
             </aside>
           </section>
@@ -819,52 +1175,36 @@ Robert C. Martin "Clean Code"
 -->
 
         <section>
+
           <section>
-            <h2>Thank You!</h2>
-            <p>Slides are available at: <a href="https://github.com/josephdpurcell/principles-of-solitary-unit-testing">github.com/josephdpurcell/principles-of-solitary-unit-testing</a>
+            <h2>Come Sprint on Friday!</h2>
+            <ul>
+              <li>All skillsets welcome!</li>
+              <li>First-timers: come find a mentor in the morning.</li>
+            </ul>
             <aside class="notes">
             </aside>
           </section>
 
           <section>
-            <h2>Sprint: Friday</h2>
-            <div style="width:49%;float:left;">
-              <ul>
-                <li>Sprint with the Community on Friday.</li>
-                <li>We have tasks for every skillset.</li>
-                <li>Mentors are available for new contributors.</li>
-                <li>An optional Friday morning workshop for first-time sprinters will help you get set up.</li>
-                <li>Follow @drupalmentoring.</li>
-              </ul>
-            </div>
-            <div style="width:49%;float:right;">
-              <img src="/assets/sprint-friday.png">
-              <p>Source: <a href="https://www.flickr.com/photos/amazeelabs/9965814443/in/faves-38914559@N03/">flickr.com/photos/amazeelabs</a></p>
-            </div>
-            <aside class="notes">
-            </aside>
-          </section>
-
-          <section data-background="/assets/what-did-you-think.png">
-            <a href="https://events.drupal.org/barcelona2015/sessions/principles-solitary-unit-testing" style="width:1280px;height:760px;display:block;z-index:999;">&nbsp;</a>
+            <h2>Feedback is Welcome!</h2>
+            <a style="font-size:70%" href="https://events.drupal.org/barcelona2015/sessions/principles-solitary-unit-testing">events.drupal.org/barcelona2015/sessions/principles-solitary-unit-testing</a>
           </section>
 
           <section>
             <h3>References</h3>
 
-            <ol>
+            <ol style="font-size:80%">
               <li>"<a href="http://www.recordholders.org/en/list/memory.html#8x8">Mental Calculation World Ranking Lists</a>", Marc Jornet Sanz multiplying 8-digit numbers</li>
-              <!--
-              <li>"<a href="https://en.wikipedia.org/wiki/Unit_testing">Unit Testing</a>", WikiPedia</li>
-              -->
               <li>"<a href="http://martinfowler.com/bliki/UnitTest.html">UnitTest</a>", Martin Fowler</li>
               <li>"<a href="https://leanpub.com/wewut">Working Effectively With Unit Tests</a>", Jay Fields</li>
               <li>"<a href="http://www.williamcaputo.com/archives/000019.html">TDD Pattern: Do not cross boundaries</a>", William E. Caputo</li>
-              <li>"<a href="http://www.objectmentor.com/resources/books.html">Clean Code</a>", Robert C. Martin</li>
+              <li>"<a href="http://c2.com/cgi/wiki?ArrangeActAssert">Arrange Act Assert</a>", Cunningham Ward</li>
               <li>"<a href="http://martinfowler.com/books/refactoring.html">Refactoring</a>", Martin Fowler</li>
               <li>"<a href="http://c2.com/cgi/wiki?ArrangeActAssert">Arrange Act Assert</a>", Ward Cunningham</p>
               <li>"<a href="http://noss.github.io/2009/02/25/writing-unit-tests-is-reinventing-functional-programming-in-non-functional-languages.html">Writing unit tests is reinventing functional programming in non-functional languages</a>", Christian S.</li>
               <li>"<a href="http://www.functionalphp.com/">Functional Programming in PHP</a>", Simon Honeywell</li>
+              <li>Drupal 8 code metrics generated by <a href="http://www.phpmetrics.org/">www.phpmetrics.org</a>, see <a href="assets/d8-phpmetrics-f3f3efae7d8b47947ff273f8480dd44798cead7b.html">results</a>.</li>
             </ol>
 
             <aside class="notes">
@@ -874,21 +1214,22 @@ Robert C. Martin "Clean Code"
           <section>
             <h3>Further Reading</h3>
 
-            <ol>
+            <ol style="font-size:60%">
               <li>See list of references.</li>
+              <li>"<a href="http://www.objectmentor.com/resources/books.html">Clean Code</a>", Robert C. Martin</li>
+              <li>"<a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod">The Principles of OOD</a>", Robert C. Martin</li>
+              <li>"<a href="https://mike-bland.com/2012/08/16/oop-revisited.html">Object-Oriented Programming Revisited</a>", Mike Bland</li>
+              <li>"<a href="https://www.amazon.com/dp/0131177052">Working Effectively with Legacy Code</a>", Michael C. Feathers</li>
+              <li>"<a href="http://martinfowler.com/articles/testing-culture.html">Goto Fail, Heartbleed, and Unit Testing Culture</a>", Martin Fowler</li>
+              <li>"<a href="http://www.dwheeler.com/essays/heartbleed.html">How to Prevent the next Heartbleed</a>", David A. Wheeler</li>
+              <li>"<a href="http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf">Why Most Unit Testing is Waste</a>", James O. Coplien</li>
               <li>"<a href="http://martinfowler.com/bliki/ObjectMother.html">Object Mother</a>", Martin Fowler</li>
               <li>"<a href="http://www.natpryce.com/articles/000714.html">Test Data Builders: an alternative to the Object Mother pattern</a>", Nat Pryce</li>
               <li>"<a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks Aren't Stubs</a>", Martin Fowler</li>
               <li>"<a href="http://googletesting.blogspot.com/search/label/TotT">Google testing blog</a>"</li>
               <li>"<a href="http://jawspeak.com/2011/07/16/improving-developers-enthusiasm-for-unit-tests-using-bubble-charts/">Improving developers enthusiasm for unit tests, using bubble charts</a>", Jonathan Andrew Wolter</li>
-              <li>"<a href="http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf">Why Most Unit Testing is Waste</a>", James O. Coplien</li>
               <li>"<a href="http://deliberate-software.com/dont-mock-concrete-classes/">Don't Mock Concrete Classes</a>", Steve Shogren</li>
               <li>"<a href="http://xunitpatterns.com/">XUnit Test Patterns</a>", George Mezaros</li>
-              <li>"Working Effectively with Legacy Code", Michael C. Feathers</li>
-              <li>"<a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod">The Principles of OOD</a>", Robert C. Martin</li>
-              <li>"<a href="https://mike-bland.com/2012/08/16/oop-revisited.html">Object-Oriented Programming Revisited</a>", Mike Bland</li>
-              <li>"<a href="http://martinfowler.com/articles/testing-culture.html">Goto Fail, Heartbleed, and Unit Testing Culture</a>", Martin Fowler</li>
-              <li>"<a href="http://www.dwheeler.com/essays/heartbleed.html">How to Prevent the next Heartbleed</a>", David A. Wheeler</li>
               <li>"<a href="http://motherboard.vice.com/read/how-is-critical-life-or-death-software-tested">How Is Critical 'Life or Death' Software Tested?</a>", Michael Byrne</li>
               <li>"<a href="http://www.johndcook.com/blog/2010/05/18/pure-functions-have-side-effects/">Pure functions have side-effects</a>", John D. Cook</li>
               <li>"<a href="http://blog.stevensanderson.com/2009/08/24/writing-great-unit-tests-best-and-worst-practises/">Writing Great Unit Tests: Best and Worst Practices</a>", Steve Sanderson</li>
@@ -897,8 +1238,23 @@ Robert C. Martin "Clean Code"
             <aside class="notes">
             </aside>
           </section>
+
+
+          <section>
+            <h2>Thank You!</h2>
+            <p>Slides are available at<br>
+            <a style="font-size:80%" href="https://github.com/josephdpurcell/principles-of-solitary-unit-testing">github.com/josephdpurcell/principles-of-solitary-unit-testing</a>
+            <aside class="notes">
+            </aside>
+          </section>
+
+
         </section>
 
+<!--
+@todo fix colors on test examples where I want to highlight things; how do I do this? I could just use a laser pointer
+@todo tie this in somehow? The advantage of solitary unit testing is that the haystack is now a cotton ball.
+-->
 
       </div><!-- /.slides -->
 
