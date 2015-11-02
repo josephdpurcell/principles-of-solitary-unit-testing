@@ -14,7 +14,7 @@ The key takeaway from this session will be a thorough understanding of solitary 
 
 ## Presentations
 
-[Presentation Index](dist/index.html)
+[Presentation Index](//josephdpurcell.github.io/principles-of-solitary-unit-testing/)
 
 ## Credits
 
