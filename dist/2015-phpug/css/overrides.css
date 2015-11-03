@@ -1,0 +1,13 @@
+.reveal blockquote p.attribution {
+  display: block;
+  text-align: right;
+  margin-top: 1em;
+}
+
+.reveal .slides section .fragment.bold {
+  opacity: 1;
+  visibility: visible;
+}
+.reveal .slides section .visible.bold {
+  font-weight: 800;
+}

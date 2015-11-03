@@ -1,0 +1,152 @@
+/**
+ * @file
+ * Style rules for general additional classes.
+ *
+ * @copyright Copyright (c) 2015 Palantir.net
+ */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.logo-wrapper {
+  display: inline-block;
+}
+
+.logo {
+
+  p {
+    position: absolute;
+    left: -999px;
+    color: transparent;
+  }
+
+  &:after {
+    content:" ";
+    display: block;
+    width: 200px;
+    height: 32px;
+    margin: 0 0 1em 1em;
+  }
+}
+
+.dark .reveal {
+  color: $lt-gray;
+
+  .logo:after {
+    background: url(../imgs/palantirnet-logo--reversed.svg);
+  }
+}
+
+.white .reveal,
+.light .reveal {
+  color: $dk-gray;
+
+  .logo:after {
+    background: url(../imgs/palantirnet-logo.svg);
+  }
+}
+
+.l-2up > div {
+  margin-bottom: 15px;
+  @include breakpoint(600px) {
+    width: 48%;
+    margin-bottom: 0;
+    text-align: left;
+    float: left;
+    font-size: 0.85em;
+
+    &:nth-of-type(1n) {
+      padding-right: 2%;
+      padding-left: 0;
+    }
+
+    &:nth-of-type(2n) {
+      padding-right: 0;
+      padding-left: 2%;
+    }
+  }
+}
+
+.l-3up > div {
+  margin-bottom: 15px;
+
+  @include breakpoint(750px) {
+    width: 31%;
+    margin-bottom: 0;
+    text-align: left;
+    float: left;
+    font-size: 0.7em;
+
+    &:nth-of-type(1n) {
+      padding-right: 2%;
+      padding-left: 0;
+    }
+
+    &:nth-of-type(2n) {
+      padding-right: 1%;
+      padding-left: 1%;
+    }
+
+    &:nth-of-type(3n) {
+      padding-right: 0;
+      padding-left: 2%;
+    }
+  }
+}
+
+.l-4up > div {
+  margin-bottom: 15px;
+
+  @include breakpoint(900px) {
+    width: 23%;
+    margin-bottom: 0;
+    text-align: left;
+    float: left;
+    font-size: 0.5em;
+
+    &:nth-of-type(1n) {
+      padding-right: 2%;
+      padding-left: 0;
+    }
+
+    &:nth-of-type(2n) {
+      padding-right: 1%;
+      padding-left: 1%;
+    }
+
+    &:nth-of-type(3n) {
+      padding-right: 1%;
+      padding-left: 1%;
+    }
+
+    &:nth-of-type(4n) {
+      padding-right: 0;
+      padding-left: 2%;
+    }
+  }
+}
+
+// add this to a span or p tag following a blockquote to have a styled attribute.
+.reveal .attribute {
+  font-size: 0.5em;
+  color: $gray;
+  position: relative;
+  top: -2.8em;
+}
+
+/*********************************************
+ * AD HOC CUSTOM CLASSES (Originally by Larry)
+ *********************************************/
+
+p.bigtext {
+  font-size: 150%;
+}
+
+.reveal {
+  ul + p, div + p {
+    margin-top: 1em;
+  }
+}
