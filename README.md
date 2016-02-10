@@ -1,12 +1,8 @@
 # Principles of Solitary Unit Testing
 
-    <dl>
-      <dt>Audience:</dt>
-        <dd>Advanced</dd>
-      <dt>Track:</dt>
-        <dd>PHP or Testing</dd>
-    </dl>
+Audience: Advanced
 
+Track: PHP or Testing
 
 The proliferation of testing strategies outside of a broadly agreed set of definitions has caused confusion and a waste of effort by choosing the wrong strategy for the goals to accomplish. Let's change that./
 
